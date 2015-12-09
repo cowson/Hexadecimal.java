@@ -1,7 +1,7 @@
 /*
-Niels Graham
+Niels Graham, Matthew So 
 APCS pd10
-hw43 -- : This or That
+hw44 --  This or That or Fourteen Other Things
 2015-12-7
 */
 
@@ -11,17 +11,17 @@ hw43 -- : This or That
 public class Binary {
 
     private int _decNum;
-    private String _binNum;
-
-
+    private String _hexNum;
+    private final static String HEXDIGITS = "0123456789ABCDEF";
+    
     /*=====================================
       default constructor
       pre:  n/a
       post: initializes _decNum to 0, _binNum to "0"
       =====================================*/
-    public Binary() { 
+    public Hex() { 
 	_decNum = 0;
-	_binNum = "0";
+	_hexNum = "0";
     }
 
 
@@ -30,19 +30,19 @@ public class Binary {
       pre:  n >= 0
       post: sets _decNum to n, _binNum to equiv string of bits
       =====================================*/
-    public Binary( int n ) {
+    public Hex( int n ) {
 	_decNum = n;
-	_binNum = decToBin(n);
+	_hexNum = decToBin(n);
     }
 
 
     /*=====================================
       overloaded constructor
       pre:  s is String representing non-negative binary number
-      post: sets _binNum to input, _decNum to decimal equiv
+      post: sets _hexNum to input, _decNum to decimal equiv
       =====================================*/
-    public Binary( String s ) {
-        _binNum = s;
+    public Hex( String s ) {
+        _hexNum = s;
 	_decNum = binToDec(s);
 	
     }
@@ -54,7 +54,7 @@ public class Binary {
       post: returns String of 1's and 0's representing value of this Object
       =====================================*/
     public String toString() { 
-        return _binNum;
+        return _hexNum ;
     }
 
 
@@ -68,7 +68,7 @@ public class Binary {
       decToBin(3) -> "11"
       decToBin(14) -> "1110"
       =====================================*/
-    public static String decToBin( int n ) {
+    public static String decToHex( int n ) {
 	String retStr = ""; 
 	int v = 1;
         while (v <= n/2) {
@@ -98,7 +98,7 @@ public class Binary {
       decToBinR(3) -> "11"
       decToBinR(14) -> "1110"
       =====================================*/
-    //  public static String decToBinR( int n ) { 
+    //  public static String decToHexR( int n ) { 
 	/****** YOUR IMPLEMENTATION HURRR ******/   
     //}
 
@@ -114,7 +114,7 @@ public class Binary {
       binToDec("11") -> 3
       binToDec("1110") -> 14
       =====================================*/
-    public static int binToDec( String s ) {
+    public static int hexToDec( String s ) {
         double j=0;
 	for(int i=0;i<s.length();i++){
 	    if(s.charAt(i)== '1'){
@@ -137,7 +137,7 @@ public class Binary {
       binToDecR("11") -> 3
       binToDecR("1110") -> 14
       =====================================*/
-    //    public static int binToDecR( String s ) { 
+    //    public static int HextoDecR( String s ) { 
 	/****** YOUR IMPLEMENTATION HURRR ******/   
     //}
 
@@ -218,4 +218,3 @@ public class Binary {
 	}//end main()
 	      
 } //end class
-
