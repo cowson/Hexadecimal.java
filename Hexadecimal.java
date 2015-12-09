@@ -8,7 +8,7 @@ hw44 --  This or That or Fourteen Other Things
 
 //skeleton file for class Binary
 
-public class Binary {
+public class Hexadecimal{
 
     private int _decNum;
     private String _hexNum;
@@ -19,7 +19,7 @@ public class Binary {
       pre:  n/a
       post: initializes _decNum to 0, _binNum to "0"
       =====================================*/
-    public Hex() { 
+    public Hexadecimal() { 
 	_decNum = 0;
 	_hexNum = "0";
     }
@@ -30,9 +30,9 @@ public class Binary {
       pre:  n >= 0
       post: sets _decNum to n, _binNum to equiv string of bits
       =====================================*/
-    public Hex( int n ) {
+    public Hexadecimal( int n ) {
 	_decNum = n;
-	_hexNum = decToBin(n);
+	_hexNum = decToHex(n);
     }
 
 
@@ -41,9 +41,9 @@ public class Binary {
       pre:  s is String representing non-negative binary number
       post: sets _hexNum to input, _decNum to decimal equiv
       =====================================*/
-    public Hex( String s ) {
+    public Hexadecimal( String s ) {
         _hexNum = s;
-	_decNum = binToDec(s);
+	_decNum = hexToDec(s);
 	
     }
 
@@ -69,21 +69,13 @@ public class Binary {
       decToBin(14) -> "1110"
       =====================================*/
     public static String decToHex( int n ) {
-	String retStr = ""; 
-	int v = 1;
-        while (v <= n/2) {
-            v = v * 2;
-        }
-        while (v > 0) {
-            if (n < v) {
-                retStr += "0";
-            }
-            else {
-                retStr += "1";
-                n = n - v;
-            }
-            v = v / 2;
-        }
+	String retStr ="";
+	int hexPlace;
+	while (n > 0){
+	    hexPlace = n%16;
+	    retStr = HEXDIGITS.charAt(hexPlace) + retStr;
+	    n /= 16;
+	}
 	return retStr;
     }
 
@@ -151,28 +143,28 @@ public class Binary {
     public boolean equals( Object other ) { 
 	boolean retVal = this == other;
 	if (!retVal){
-	    retVal = other instanceof Binary && (this.compareTo((Binary)other) ==0);
+	    retVal = other instanceof Hexadecimal && (this.compareTo((Hexadecimal)other) ==0);
 	}
 	return retVal;
     }
 
 
     /*=============================================
-      int compareTo(Object) -- tells which of two Binary objects is greater
+      int compareTo(Object) -- tells which of two Hexadecimalobjects is greater
       pre:  other is instance of class Binary
       post: Returns 0 if this Object is equal to the input Object,
       negative integer if this<input, positive integer otherwise
       =============================================*/
     public int compareTo( Object other ) {
-	if (! (other instanceof Binary))
+	if (! (other instanceof Hexadecimal))
 	    throw new ClassCastException("\n My first Error Message" + "compareTo() input not a binary");
-
-	Binary temp = (Binary)(other);
-	if (temp._decNum == this._decNum)
+	
+	Hexadecimal Hexadecimaltemp = (Hexadecimal)(other);
+	if (Hexadecimaltemp._decNum == this._decNum)
 	    return 0;
-	if (temp._decNum < this._decNum)
+	if (Hexadecimaltemp._decNum < this._decNum)
 	    return 1;
-	if (temp._decNum > this._decNum)
+	if (Hexadecimaltemp._decNum > this._decNum)
 	    return -1;
 	else
 	    System.out.println("error");
@@ -187,10 +179,10 @@ public class Binary {
 	System.out.println();
 	System.out.println( "Testing ..." );
 
-	Binary b1 = new Binary(5);
-	Binary b2 = new Binary(5);
-	Binary b3 = b1;
-	Binary b4 = new Binary(7);
+	Hexadecimal b1 = new Hexadecimal(1213423);
+	Hexadecimal b2 = new Hexadecimal(5);
+	Hexadecimal b3 = b1;
+	Hexadecimal b4 = new Hexadecimal(7);
 
 	System.out.println( b1 );
 	System.out.println( b2 );
